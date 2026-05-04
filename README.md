@@ -42,6 +42,26 @@ npm install
 npm run dev
 ```
 
+## Deploy de teste no GitHub Pages
+
+O repositorio ja inclui um workflow em `.github/workflows/github-pages.yml`.
+
+No GitHub, configure em `Settings > Secrets and variables > Actions > Variables`:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `VITE_GOOGLE_MAPS_API_KEY` opcional, pode ficar vazio por enquanto
+
+Depois habilite o Pages em `Settings > Pages` usando `GitHub Actions` como source.
+
+A URL de teste sera:
+
+```text
+https://ericolimaeducador-ux.github.io/meetoo-webapp/
+```
+
+Adicione essa URL tambem no Supabase em `Authentication > URL Configuration`.
+
 ## Tabelas esperadas no Supabase
 
 - `profiles`
