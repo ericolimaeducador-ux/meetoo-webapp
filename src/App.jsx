@@ -4,7 +4,9 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
-import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { Button } from '@/components/ui/button';
+import MeetooLogo from '@/components/shared/MeetooLogo';
 import Landing from './pages/Landing';
 import Discover from './pages/Discover';
 import UserProfile from './pages/UserProfile';
@@ -16,43 +18,39 @@ import Settings from './pages/Settings';
 import Admin from './pages/Admin';
 import AppLayout from './components/shared/AppLayout';
 
-const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+const LoginRequired = () => {
+  const { navigateToLogin } = useAuth();
 
-  // Show loading spinner while checking app public settings or auth
-  if (isLoadingPublicSettings || isLoadingAuth) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-slate-200 border-t-slate-800 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-background">
+      <MeetooLogo size="md" />
+      <h1 className="mt-8 text-2xl font-serif font-bold">Entre para continuar</h1>
+      <p className="mt-3 max-w-sm text-sm text-muted-foreground">
+        Use seu email para receber um link de acesso seguro.
+      </p>
+      <Button onClick={navigateToLogin} className="mt-8 rounded-full px-8">
+        Receber link de acesso
+      </Button>
+    </div>
+  );
+};
 
-  // Handle authentication errors
-  if (authError) {
-    if (authError.type === 'user_not_registered') {
-      return <UserNotRegisteredError />;
-    } else if (authError.type === 'auth_required') {
-      // Redirect to login automatically
-      navigateToLogin();
-      return null;
-    }
-  }
-
-  // Render the main app
+const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route element={<AppLayout />}>
-        <Route path="/discover" element={<Discover />} />
-        <Route path="/user/:id" element={<UserProfile />} />
-        <Route path="/requests" element={<Requests />} />
-        <Route path="/conversations" element={<Conversations />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
+      <Route element={<ProtectedRoute unauthenticatedElement={<LoginRequired />} />}>
+        <Route element={<AppLayout />}>
+          <Route path="/discover" element={<Discover />} />
+          <Route path="/user/:id" element={<UserProfile />} />
+          <Route path="/requests" element={<Requests />} />
+          <Route path="/conversations" element={<Conversations />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
+        <Route path="/chat/:id" element={<Chat />} />
+        <Route path="/admin" element={<Admin />} />
       </Route>
-      <Route path="/chat/:id" element={<Chat />} />
-      <Route path="/admin" element={<Admin />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
@@ -66,7 +64,7 @@ function App() {
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router basename={routerBasename}>
-          <AuthenticatedApp />
+          <AppRoutes />
         </Router>
         <Toaster />
       </QueryClientProvider>
