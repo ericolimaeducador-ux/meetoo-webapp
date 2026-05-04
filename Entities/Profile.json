@@ -1,0 +1,153 @@
+{
+  "name": "Profile",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Reference to the user"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "birth_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of birth"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "non_binary",
+        "prefer_not_to_say"
+      ]
+    },
+    "city": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Short bio text"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of photo URLs"
+    },
+    "selfie_url": {
+      "type": "string",
+      "description": "Verification selfie URL"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of interests/tags"
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "friendship",
+        "meet_people",
+        "serious_relationship",
+        "casual_dates"
+      ],
+      "description": "Relationship intent"
+    },
+    "lifestyle": {
+      "type": "string",
+      "description": "Optional lifestyle description"
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "verified",
+        "verified_plus",
+        "rejected",
+        "under_review"
+      ],
+      "default": "pending"
+    },
+    "photo_confirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "identity_consistent": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_online": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether user is currently available"
+    },
+    "last_online": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "search_radius_km": {
+      "type": "number",
+      "default": 10,
+      "description": "Discovery radius in km"
+    },
+    "is_visible": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether profile appears in discovery"
+    },
+    "is_invisible": {
+      "type": "boolean",
+      "default": false,
+      "description": "Stealth mode"
+    },
+    "show_age_range": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show age range instead of exact age"
+    },
+    "preferred_gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "non_binary",
+        "everyone"
+      ],
+      "default": "everyone"
+    },
+    "preferred_age_min": {
+      "type": "number",
+      "default": 18
+    },
+    "preferred_age_max": {
+      "type": "number",
+      "default": 60
+    },
+    "approx_latitude": {
+      "type": "number",
+      "description": "Approximate latitude (rounded)"
+    },
+    "approx_longitude": {
+      "type": "number",
+      "description": "Approximate longitude (rounded)"
+    },
+    "onboarding_complete": {
+      "type": "boolean",
+      "default": false
+    },
+    "trust_score": {
+      "type": "number",
+      "default": 0,
+      "description": "Internal trust score, not shown to users"
+    }
+  },
+  "required": [
+    "display_name"
+  ]
+}

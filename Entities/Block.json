@@ -1,0 +1,21 @@
+{
+  "name": "Block",
+  "type": "object",
+  "properties": {
+    "blocker_id": {
+      "type": "string",
+      "description": "User who initiated the block"
+    },
+    "blocked_id": {
+      "type": "string",
+      "description": "User who is blocked"
+    },
+    "blocked_display_name": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "blocker_id",
+    "blocked_id"
+  ]
+}

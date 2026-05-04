@@ -1,0 +1,24 @@
+{
+  "topic": "inteligencia artificial na educação",
+  "queries": [
+    "artificial intelligence education",
+    "AI learning assessment",
+    "generative AI higher education"
+  ],
+  "include_any": [
+    "artificial intelligence",
+    "AI",
+    "machine learning",
+    "generative AI"
+  ],
+  "include_all": [
+    "education"
+  ],
+  "exclude_any": [
+    "editorial",
+    "letter to editor",
+    "correction"
+  ],
+  "min_year": 2020,
+  "poll_interval_minutes": 60
+}

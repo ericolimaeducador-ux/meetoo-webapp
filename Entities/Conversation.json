@@ -1,0 +1,50 @@
+{
+  "name": "Conversation",
+  "type": "object",
+  "properties": {
+    "participant_a": {
+      "type": "string",
+      "description": "User ID of participant A"
+    },
+    "participant_b": {
+      "type": "string",
+      "description": "User ID of participant B"
+    },
+    "participant_a_name": {
+      "type": "string"
+    },
+    "participant_b_name": {
+      "type": "string"
+    },
+    "participant_a_photo": {
+      "type": "string"
+    },
+    "participant_b_photo": {
+      "type": "string"
+    },
+    "last_message": {
+      "type": "string"
+    },
+    "last_message_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paused",
+        "blocked"
+      ],
+      "default": "active"
+    },
+    "request_id": {
+      "type": "string",
+      "description": "Reference to the original conversation request"
+    }
+  },
+  "required": [
+    "participant_a",
+    "participant_b"
+  ]
+}

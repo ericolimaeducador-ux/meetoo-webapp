@@ -1,0 +1,25 @@
+{
+  "per_source_limit": 25,
+  "sources": [
+    {
+      "name": "openalex",
+      "enabled": true,
+      "api_key": ""
+    },
+    {
+      "name": "crossref",
+      "enabled": true,
+      "api_key": ""
+    },
+    {
+      "name": "europe_pmc",
+      "enabled": true,
+      "api_key": ""
+    },
+    {
+      "name": "arxiv",
+      "enabled": true,
+      "api_key": ""
+    }
+  ]
+}
