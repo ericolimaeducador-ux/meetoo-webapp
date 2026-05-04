@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const navigateToLogin = () => {
-    appClient.auth.redirectToLogin(window.location.href);
+    appClient.auth.redirectToLogin();
   };
 
   return (

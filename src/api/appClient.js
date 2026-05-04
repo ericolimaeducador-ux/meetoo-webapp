@@ -81,7 +81,7 @@ export const appClient = {
       if (redirectTo) window.location.href = redirectTo;
     },
 
-    async redirectToLogin(redirectTo = window.location.href) {
+    async redirectToLogin(redirectTo = `${window.location.origin}${import.meta.env.BASE_URL}`) {
       const email = window.prompt("Digite seu e-mail para receber o link de acesso:");
       if (!email) return;
       const { error } = await supabase.auth.signInWithOtp({
