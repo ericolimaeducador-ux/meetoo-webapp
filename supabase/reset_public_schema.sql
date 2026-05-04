@@ -9,8 +9,10 @@ drop policy if exists "profile_photos_authenticated_upload" on storage.objects;
 drop policy if exists "profile_photos_owner_update" on storage.objects;
 drop policy if exists "profile_photos_owner_delete" on storage.objects;
 
-delete from storage.objects where bucket_id = 'profile-photos';
-delete from storage.buckets where id = 'profile-photos';
+-- Supabase blocks direct deletes from storage.objects/storage.buckets.
+-- Leave the bucket in place; the initial migration updates it with `on conflict`.
+-- If you need to remove uploaded files, empty/delete the bucket from the
+-- Supabase Storage UI or Storage API.
 
 drop table if exists public.messages cascade;
 drop table if exists public.conversations cascade;
